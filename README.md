@@ -27,20 +27,20 @@ In summary this are the steps that the script perform:
 1. Given a bundle file, it will parse it to get the bridge ID of the given bridge name (default to Contacts to search for Spyware).
 2. Get all the bridges names of the bundle file and write them into the file `all_bridges.txt`
 3. All the functions with the previous ID in the function's import array will be written into separate files.
-4. Give the index number in the function's import array of each function so that the reverser do not have to count it.
+4. Give the index number in the function's import array of each function so that the reverser does not have to count it.
 5. Parse each function to search for common words such as `getAll`. Feel free to edit it in the `keywords` variable.
 
 ## Disclaimer
 
-Always analyse the bundle file and the functiona manually. This script is only a helper to try to speed up the process.
+Always analyse the bundle file and the functions manually. This script is only a helper to try to speed up the process.
 
 ---
 
 ### TODO
 
-This is a first version with rude regex and a lot of spaguety code. What it concerns me the most is that it may have problems handleling REALLY big bundle files (specially loading them into memory). 
+This is the first version with rude regex and a lot of spaghetti code. What concerns me the most is that it may have problems handling REALLY big bundle files (specially loading them into memory). 
 
 1. Clean up the code.
-2. Find better regex.
+2. Find a better regex.
 3. Multithreading and better file management for really big files
 4. Whatever...
