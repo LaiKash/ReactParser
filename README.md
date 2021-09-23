@@ -36,6 +36,8 @@ In summary this are the steps that the script perform:
 
 Always analyse the bundle file and the functions manually. This script is only a helper to try to speed up the process.
 
+The regex expressions can fail when identifying functions (for example if there is a function inside another one). Please, always check it manually.
+
 ---
 
 ### TODO
