@@ -6,7 +6,7 @@ This script is meant to help Android Reverse Engineers to analyse React Native b
 
 - Python3 correctly installed.
 - [JS Beautifier](https://github.com/beautify-web/js-beautify) installed to work with Python.
-- A normal "bundle" JS file (mainly, but not least, not Hermes compiled).
+- A "normal" bundle JS file (mainly, but not least, not Hermes compiled).
 
 ## Usage
 
