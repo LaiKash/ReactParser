@@ -32,7 +32,7 @@ In summary this are the steps that the script perform:
 
 Always analyse the bundle file and the functiona manually. This script is only a helper to try to speed up the process.
 
---
+---
 
 ### TODO
 
