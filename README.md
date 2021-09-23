@@ -13,15 +13,10 @@ parseReact.py [-h] [-b] [-f [FILE]] [-g [BRIDGE]]
 optional arguments:
 
   -h, --help            show this help message and exit
-  
   -b, --beauty          DO NOT beautify the bundle. This is used when you already have the output from js-beautify.
-  
   -f [FILE], --file [FILE]
-  
-                        File name of the bundle file. Default name: bundle.js
-                        
+                      File name of the bundle file. Default name: bundle.js                     
   -g [BRIDGE], --bridge [BRIDGE]
-  
                         Specify the full bridge name (eg. for NativeModules.Contacts, insert only Contacts). Default: Contacts
                         
                        
