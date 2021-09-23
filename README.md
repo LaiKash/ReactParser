@@ -1,10 +1,12 @@
 # ReactParser
+
 This script is meant to help Android Reverse Engineers to analyse React Native bundle.
 
 ## Requisites
 
 - Python3 correctly installed.
 - [JS Beautifier](https://github.com/beautify-web/js-beautify) installed to work with Python.
+- A normal "bundle" JS file (mainly, but not least, not Hermes compiled).
 
 ## Usage
 
