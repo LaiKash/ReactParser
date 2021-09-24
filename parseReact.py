@@ -30,7 +30,7 @@ bridge_func_regex = re.compile(r'(?s)NativeModules\.'+args.bridge+'((.*?)|(\n)+)
 # Get the bridge ID
 bridge_id_regex = re.compile(r',.\d+,')
 # Separate all functions into Match Objects
-functions_sep_regex = re.compile(r'(?s)__d\(function(.*?),.\d+(.*?)\d\]\)\;')
+functions_sep_regex = re.compile(r'(?s)__d\(function\((\w+,\s)+\w+\)\s\{(.*?)\},\s\d+(.*?)\d\]\)\;')
 # To parse the bridge names
 bridge_names_regex = re.compile(r'NativeModules\.\w+')
 # To count the bridge number used in the function
