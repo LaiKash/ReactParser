@@ -40,6 +40,12 @@ The regex expressions can fail when identifying functions (for example if there 
 
 ---
 
+### Known Issues
+
+Backtracking in the regex will miss some functions. Need to improve the regex.
+
+---
+
 ### TODO
 
 This is the first version with rude regex and a lot of spaghetti code. What concerns me the most is that it may have problems handling REALLY big bundle files (specially loading them into memory). 
