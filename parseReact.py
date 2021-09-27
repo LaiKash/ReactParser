@@ -35,7 +35,7 @@ functions_sep_regex = re.compile(r'(?s)__d\(function\((\w+,\s)+\w+\)\s\{(.*?)\},
 bridge_names_regex = re.compile(r'NativeModules\.\w+')
 # To count the bridge number used in the function
 bridge_line_regex = re.compile(r'(?:\d+,.)+\d+')
-
+# To parse bad parsed functions
 
 
 def beautify(bundleName):
@@ -99,7 +99,9 @@ def parse(res):
     print('[+] Bridge ID found: '+OKGREEN+bridge_id[0].replace(',','')+ ENDC)
     print('[+] Finding functions with that bridge ID...')
     functions_sep = functions_sep_regex.finditer(res)
+    
     count = 0
+    numberOfFuncFound=len(re.findall(bridge_id[0], res))
     for functions in functions_sep:
         if bridge_id[0] in functions.group(0):
             func_name = 'function_'+str(count)+'.js'
@@ -115,7 +117,10 @@ def parse(res):
             if not signals:
                 print('\t[-] No suspicious patterns found in this function.')
             count = count + 1
-    print('[+] DONE! ANALYSE ALL THE FUNCTIONS AND THE BUNDLE MANUALLY TOO!')
+    if count!=numberOfFuncFound:
+        print(WARNING+'[!!] ATENTION: THE FUNCTIONS WERE NOT PARSED PROPERLY, CHECK THE BUNDLE MANUALLY!! (known bug, catastrophic backtracking)'+ENDC)
+    else:
+        print('[+] DONE! ANALYSE ALL THE FUNCTIONS AND THE BUNDLE MANUALLY TOO!')
 
 def id_count_helper(func_name, bridge_id):
     with open(func_name, "r") as file:
@@ -136,7 +141,6 @@ def analyse_files(file_name):
     verdict = WARNING+'\t[!] ATENTION'+ENDC+': File ' + file_name + ' needs MORE analysis. Found: '+ENDC
     with open(file_name, "r") as file:
         for line in file:
-                #print(line.lower())
                 for keyword in keywords:
                     if keyword.lower() in line.lower() and keyword.lower() not in verdict:
                         verdict += WARNING+keyword + ' '+ENDC
