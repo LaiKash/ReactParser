@@ -96,6 +96,7 @@ def parse(res):
         bridge_id = bridge_id_regex.search(bridge_func[0])
     except:
         print (FAIL+"ERROR! BRIDGE NAME INCORRECT OR NOT FOUND."+ENDC)
+        sys.exit(1)
     print('[+] Bridge ID found: '+OKGREEN+bridge_id[0].replace(',','')+ ENDC)
     print('[+] Finding functions with that bridge ID...')
     functions_sep = functions_sep_regex.finditer(res)
