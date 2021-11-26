@@ -42,7 +42,7 @@ The regex expressions can fail when identifying functions (for example if there 
 
 ### Known Issues
 
-Backtracking in the regex will miss some functions. Need to improve the regex.
+Backtracking in the regex will miss some functions. 
 
 ---
 
@@ -53,4 +53,5 @@ This is the first version with rude regex and a lot of spaghetti code. What conc
 1. Clean up the code.
 2. Find a better regex.
 3. Multithreading and better file management for really big files
-4. Whatever...
+4. If catastrophic backtracking happens, at least have the index number of each function altough the analysis cannot be done.
+5. Whatever...
