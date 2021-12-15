@@ -15,9 +15,9 @@ parseReact.py [-h] [-b] [-f [FILE]] [-g [BRIDGE]]
 optional arguments:
 
   -h, --help            show this help message and exit
-  -b, --beauty          DO NOT beautify the bundle. This is used when you already have the output from js-beautify.
+  -b, --beauty          DO NOT beautify the bundle. This is used when you already have the output from js-beautify. It requires the --file option.
   -f [FILE], --file [FILE]
-                      File name of the bundle file. Default name: bundle.js                     
+                      File name of the bundle file. Default name (if no --beauty option is used): bundle.js                     
   -g [BRIDGE], --bridge [BRIDGE]
                         Specify the full bridge name (eg. for NativeModules.Contacts, insert NativeModules.Contacts). Default: NativeModules.Contacts
 ```
@@ -27,7 +27,7 @@ optional arguments:
 In summary this are the steps that the script perform:
 
 1. Given a bundle file, it will parse it to get the bridge ID of the given bridge name (default to Contacts to search for Spyware).
-2. Get all the bridges names of the bundle file and write them into the file `all_bridges.txt`
+2. Get all the bridges names (starting with "NativeModules.") of the bundle file and write them into the file `all_bridges.txt`
 3. All the functions with the previous ID in the function's import array will be written into separate files.
 4. Give the index number in the function's import array of each function so that the reverser does not have to count it.
 5. Parse each function to search for common words such as `getAll`. Feel free to edit it in the `keywords` variable.
