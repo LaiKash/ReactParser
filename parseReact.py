@@ -79,7 +79,7 @@ def openBundleBeauty(bundleName):
 
 
 def all_bridges_func (res):
-    print("[+] Writing all bridges names in: all_bridges.txt")
+    print("[+] Writing all bridges names (starting with NativeModules.) in: all_bridges.txt")
     filename = "all_bridges.txt"
     file_exists=os.path.exists(filename)
     if file_exists:
