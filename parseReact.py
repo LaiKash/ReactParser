@@ -5,11 +5,11 @@ from argparse import ArgumentParser
 parser = ArgumentParser()
 
 parser.add_argument("-b", "--beauty", action="store_true",
-                    help="DO NOT beautify the bundle. This is used when you already have the output from js-beautify.")
+                    help="DO NOT beautify the bundle. This is used when you already have the output from js-beautify. It requires the --file option.")
 parser.add_argument("-f", "--file", default="bundle.js", nargs='?', action="store",
-                     help="File name of the bundle file. Default name: bundle.js")
-parser.add_argument("-g", "--bridge", default="Contacts", nargs='?', action='store',
-                     help="Specify the full bridge name (eg. for NativeModules.Contacts, insert only Contacts). Default: Contacts")
+                     help="File name of the bundle file. Default name (if no --beauty option is used): bundle.js")
+parser.add_argument("-g", "--bridge", default="NativeModules.Contacts", nargs='?', action='store',
+                     help="Specify the full bridge name (eg. for NativeModules.Contacts, insert  NativeModules.Contacts). Default: NativeModules.Contacts")
 
 args = parser.parse_args()
 HEADER = '\033[95m'
@@ -21,12 +21,15 @@ ENDC = '\033[0m'
 
 # Keywords to search in the functions
 keywords = ['http.get', 'http.post','upload', 'sendrequest', 'xmlhttprequest', '$.ajax', '$.post', 'fetch', '$http',
-            '"post"', 'firebasestorage', 'firebaseio', 'send', 'contact', 'invite', 'getAll', ]
+            '"post"', 'firebasestorage', 'firebaseio', 'send', 'contact', 'invite', 'getAll']
 global signals
 signals = False
 
+
+
+
 # Get the bridge function
-bridge_func_regex = re.compile(r'(?s)NativeModules\.'+args.bridge+'((.*?)|(\n)+)},.\d+,')
+bridge_func_regex = re.compile(r'(?s)'+args.bridge+'((.*?)|(\n)+)},.\d+,')
 # Get the bridge ID
 bridge_id_regex = re.compile(r',.\d+,')
 # Separate all functions into Match Objects
@@ -117,9 +120,11 @@ def parse(res):
             # Maybe call here the analyse_files
             if not signals:
                 print('\t[-] No suspicious patterns found in this function.')
-            count = count + 1
-    if count!=numberOfFuncFound:
-        print(WARNING+'[!!] ATENTION: THE FUNCTIONS WERE NOT PARSED PROPERLY, CHECK THE BUNDLE MANUALLY!! (known bug, catastrophic backtracking)'+ENDC)
+            
+
+    if count!=numberOfFuncFound or count <= 1: # The bridge function is usually captured, and at least two functions should be captured (except if the bridge is not used)
+
+        print(WARNING+'[!!] ATENTION: THE FUNCTIONS WERE  PROBABLY NOT PARSED PROPERLY, CHECK THE BUNDLE MANUALLY!! (known bug, catastrophic backtracking)'+ENDC)
     else:
         print('[+] DONE! ANALYSE ALL THE FUNCTIONS AND THE BUNDLE MANUALLY TOO!')
 
@@ -150,8 +155,12 @@ def analyse_files(file_name):
             print(verdict)
 
 
+if args.beauty and (args.file is None or args.file == "bundle.js"):
+    parser.error("--beauty requires --file to specify the file.")
 
 if args.beauty:
+    if (args.file is None or args.file == "bundle.js"):
+        parser.error("--beauty requires --file to specify the file.")
     res=openBundleBeauty(args.file)
     parse(res)
 else:
