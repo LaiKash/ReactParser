@@ -156,7 +156,8 @@ def analyse_files(file_name):
 
 
 if args.beauty and (args.file is None or args.file == "bundle.js"):
-    parser.error("--beauty requires --file to specify the file.")
+
+    parser.error(FAIL+"--beauty requires --file to specify the file."+ENDC)
 
 if args.beauty:
     if (args.file is None or args.file == "bundle.js"):
