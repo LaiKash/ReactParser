@@ -109,6 +109,7 @@ def parse(res):
     for functions in functions_sep:
         if bridge_id[0] in functions.group(0):
             func_name = 'function_'+str(count)+'.js'
+            count = count + 1
             print('[+] Function found! Writing it in: '+ OKCYAN + func_name + ENDC)
             file_exists=os.path.exists(func_name)
             if file_exists:
@@ -120,7 +121,6 @@ def parse(res):
             # Maybe call here the analyse_files
             if not signals:
                 print('\t[-] No suspicious patterns found in this function.')
-            
 
     if count!=numberOfFuncFound or count <= 1: # The bridge function is usually captured, and at least two functions should be captured (except if the bridge is not used)
 
@@ -157,7 +157,7 @@ def analyse_files(file_name):
 
 if args.beauty and (args.file is None or args.file == "bundle.js"):
 
-    parser.error(FAIL+"--beauty requires --file to specify the file."+ENDC)
+    parser.error(FAIL+"ERROR: --beauty requires --file to specify the file."+ENDC)
 
 if args.beauty:
     if (args.file is None or args.file == "bundle.js"):
