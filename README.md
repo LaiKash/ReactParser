@@ -19,7 +19,7 @@ optional arguments:
   -f [FILE], --file [FILE]
                       File name of the bundle file. Default name: bundle.js                     
   -g [BRIDGE], --bridge [BRIDGE]
-                        Specify the full bridge name (eg. for NativeModules.Contacts, insert only Contacts). Default: Contacts
+                        Specify the full bridge name (eg. for NativeModules.Contacts, insert NativeModules.Contacts). Default: NativeModules.Contacts
 ```
                        
 ## Features
