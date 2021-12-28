@@ -42,7 +42,7 @@ The regex expressions can fail when identifying functions (for example if there 
 
 ### Known Issues
 
-Backtracking in the regex will miss some functions. 
+Backtracking in the regex will miss some functions altough it has kind of error detection.
 
 ---
 
